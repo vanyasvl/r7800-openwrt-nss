@@ -34,7 +34,7 @@ Signed-off-by: ratheesh kannoth <rkannoth@codeaurora.org>
  
  /*
   * Disconnect a channel from the generic layer.
-@@ -3864,6 +3878,7 @@ EXPORT_SYMBOL(ppp_unregister_channel);
+@@ -3868,6 +3882,7 @@ EXPORT_SYMBOL(ppp_unregister_channel);
  EXPORT_SYMBOL(ppp_channel_index);
  EXPORT_SYMBOL(ppp_unit_number);
  EXPORT_SYMBOL(ppp_dev_name);
@@ -52,7 +52,7 @@ Signed-off-by: ratheesh kannoth <rkannoth@codeaurora.org>
  #include <linux/notifier.h>
  
  /* PPP channel connection event types */
-@@ -118,6 +119,9 @@ extern void ppp_unregister_channel(struc
+@@ -117,6 +118,9 @@ extern void ppp_unregister_channel(struc
  /* Get the channel number for a channel */
  extern int ppp_channel_index(struct ppp_channel *);
  

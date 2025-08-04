@@ -18,7 +18,7 @@ Signed-off-by: Murat Sezgin <msezgin@codeaurora.org>
 
 --- a/drivers/net/ppp/ppp_generic.c
 +++ b/drivers/net/ppp/ppp_generic.c
-@@ -3747,6 +3747,32 @@ int ppp_is_multilink(struct net_device *
+@@ -3751,6 +3751,32 @@ int ppp_is_multilink(struct net_device *
  }
  EXPORT_SYMBOL(ppp_is_multilink);
  
@@ -51,7 +51,7 @@ Signed-off-by: Murat Sezgin <msezgin@codeaurora.org>
  /* ppp_channel_get_protocol()
   *	Call this to obtain the underlying protocol of the PPP channel,
   *	e.g. PX_PROTO_OE
-@@ -3851,6 +3877,59 @@ int ppp_hold_channels(struct net_device
+@@ -3855,6 +3881,59 @@ int ppp_hold_channels(struct net_device
  }
  EXPORT_SYMBOL(ppp_hold_channels);
  
@@ -143,7 +143,7 @@ Signed-off-by: Murat Sezgin <msezgin@codeaurora.org>
  #endif
 --- a/include/linux/ppp_channel.h
 +++ b/include/linux/ppp_channel.h
-@@ -83,10 +83,17 @@ extern int ppp_hold_channels(struct net_
+@@ -82,10 +82,17 @@ extern int ppp_hold_channels(struct net_
  			     unsigned int chan_sz);
  
  bool ppp_is_cp_enabled(struct net_device *dev);
@@ -235,5 +235,5 @@ Signed-off-by: Murat Sezgin <msezgin@codeaurora.org>
 -	po->chan.ops	 = &pppol2tp_chan_ops;
 +	po->chan.ops	 = &pppol2tp_chan_ops.ops;
  	po->chan.mtu	 = pppol2tp_tunnel_mtu(tunnel);
+ 	po->chan.direct_xmit	= true;
  
- 	error = ppp_register_net_channel(sock_net(sk), &po->chan);

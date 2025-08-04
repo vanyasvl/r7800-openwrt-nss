@@ -43,7 +43,7 @@ Signed-off-by: Amruth S <quic_amrus@quicinc.com>
  	int notify = 0;
  
  	pn = ppp_pernet(pch->chan_net);
-@@ -3543,6 +3546,30 @@ ppp_connect_channel(struct channel *pch,
+@@ -3547,6 +3550,30 @@ ppp_connect_channel(struct channel *pch,
  	++ppp->n_channels;
  	pch->ppp = ppp;
  	refcount_inc(&ppp->file.refcnt);
@@ -74,7 +74,7 @@ Signed-off-by: Amruth S <quic_amrus@quicinc.com>
  	notify = 1;
  
  	ppp_unlock(ppp);
-@@ -3793,6 +3820,18 @@ int ppp_channel_get_protocol(struct ppp_
+@@ -3797,6 +3824,18 @@ int ppp_channel_get_protocol(struct ppp_
  }
  EXPORT_SYMBOL(ppp_channel_get_protocol);
  
@@ -93,7 +93,7 @@ Signed-off-by: Amruth S <quic_amrus@quicinc.com>
  /* ppp_channel_hold()
   *	Call this to hold a channel.
   *
-@@ -3946,6 +3985,28 @@ void ppp_release_channels(struct ppp_cha
+@@ -3950,6 +3989,28 @@ void ppp_release_channels(struct ppp_cha
  }
  EXPORT_SYMBOL(ppp_release_channels);
  
@@ -143,7 +143,7 @@ Signed-off-by: Amruth S <quic_amrus@quicinc.com>
  	/* Hold the channel from being destroyed */
  	void (*hold)(struct ppp_channel *);
  	/* Release hold on the channel */
-@@ -67,6 +69,9 @@ struct ppp_channel {
+@@ -66,6 +68,9 @@ struct ppp_channel {
   */
  extern int ppp_channel_get_protocol(struct ppp_channel *);
  
@@ -153,7 +153,7 @@ Signed-off-by: Amruth S <quic_amrus@quicinc.com>
  /* Call this to hold a channel */
  extern bool ppp_channel_hold(struct ppp_channel *);
  
-@@ -83,6 +88,10 @@ extern int ppp_hold_channels(struct net_
+@@ -82,6 +87,10 @@ extern int ppp_hold_channels(struct net_
  			     unsigned int chan_sz);
  
  bool ppp_is_cp_enabled(struct net_device *dev);

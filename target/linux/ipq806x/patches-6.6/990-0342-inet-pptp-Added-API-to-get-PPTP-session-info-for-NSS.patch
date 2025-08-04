@@ -71,7 +71,7 @@ Signed-off-by: Murat Sezgin <msezgin@codeaurora.org>
  		return sk_receive_skb(sk_pppox(po), skb, 0);
  	}
  drop:
-@@ -603,6 +634,50 @@ static int pptp_ppp_ioctl(struct ppp_cha
+@@ -604,6 +635,50 @@ static int pptp_ppp_ioctl(struct ppp_cha
  	return err;
  }
  

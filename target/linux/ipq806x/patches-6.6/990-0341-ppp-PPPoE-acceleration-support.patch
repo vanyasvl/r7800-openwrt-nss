@@ -90,7 +90,7 @@ Signed-off-by: Murat Sezgin <quic_msezgin@quicinc.com>
  
  	pn = ppp_pernet(pch->chan_net);
  
-@@ -3510,6 +3529,8 @@ ppp_connect_channel(struct channel *pch,
+@@ -3514,6 +3533,8 @@ ppp_connect_channel(struct channel *pch,
  	++ppp->n_channels;
  	pch->ppp = ppp;
  	refcount_inc(&ppp->file.refcnt);
@@ -99,7 +99,7 @@ Signed-off-by: Murat Sezgin <quic_msezgin@quicinc.com>
  	ppp_unlock(ppp);
  	ret = 0;
  
-@@ -3517,6 +3538,14 @@ ppp_connect_channel(struct channel *pch,
+@@ -3521,6 +3542,14 @@ ppp_connect_channel(struct channel *pch,
  	write_unlock_bh(&pch->upl);
   out:
  	mutex_unlock(&pn->all_ppp_mutex);
@@ -114,7 +114,7 @@ Signed-off-by: Murat Sezgin <quic_msezgin@quicinc.com>
  	return ret;
  }
  
-@@ -3534,6 +3563,13 @@ ppp_disconnect_channel(struct channel *p
+@@ -3538,6 +3567,13 @@ ppp_disconnect_channel(struct channel *p
  	pch->ppp = NULL;
  	write_unlock_bh(&pch->upl);
  	if (ppp) {
@@ -128,7 +128,7 @@ Signed-off-by: Murat Sezgin <quic_msezgin@quicinc.com>
  		/* remove it from the ppp unit's list */
  		ppp_lock(ppp);
  		list_del(&pch->clist);
-@@ -3613,6 +3649,188 @@ static void *unit_find(struct idr *p, in
+@@ -3617,6 +3653,188 @@ static void *unit_find(struct idr *p, in
  	return idr_find(p, n);
  }
  
@@ -317,7 +317,7 @@ Signed-off-by: Murat Sezgin <quic_msezgin@quicinc.com>
  /* Module/initialization stuff */
  
  module_init(ppp_init);
-@@ -3629,6 +3847,8 @@ EXPORT_SYMBOL(ppp_input_error);
+@@ -3633,6 +3851,8 @@ EXPORT_SYMBOL(ppp_input_error);
  EXPORT_SYMBOL(ppp_output_wakeup);
  EXPORT_SYMBOL(ppp_register_compressor);
  EXPORT_SYMBOL(ppp_unregister_compressor);
@@ -336,7 +336,7 @@ Signed-off-by: Murat Sezgin <quic_msezgin@quicinc.com>
  #include <linux/init.h>
  #include <linux/if_ether.h>
  #include <linux/if_pppox.h>
-@@ -87,7 +88,7 @@
+@@ -88,7 +89,7 @@
  static int __pppoe_xmit(struct sock *sk, struct sk_buff *skb);
  
  static const struct proto_ops pppoe_ops;
@@ -345,7 +345,7 @@ Signed-off-by: Murat Sezgin <quic_msezgin@quicinc.com>
  
  /* per-net private data for this module */
  static unsigned int pppoe_net_id __read_mostly;
-@@ -645,6 +646,7 @@ static int pppoe_connect(struct socket *
+@@ -646,6 +647,7 @@ static int pppoe_connect(struct socket *
  	if (stage_session(po->pppoe_pa.sid)) {
  		pppox_unbind_sock(sk);
  		pn = pppoe_pernet(sock_net(sk));
@@ -353,16 +353,16 @@ Signed-off-by: Murat Sezgin <quic_msezgin@quicinc.com>
  		delete_item(pn, po->pppoe_pa.sid,
  			    po->pppoe_pa.remote, po->pppoe_ifindex);
  		if (po->pppoe_dev) {
-@@ -692,7 +694,7 @@ static int pppoe_connect(struct socket *
+@@ -693,7 +695,7 @@ static int pppoe_connect(struct socket *
  
  		po->chan.mtu = dev->mtu - sizeof(struct pppoe_hdr) - 2;
  		po->chan.private = sk;
 -		po->chan.ops = &pppoe_chan_ops;
 +		po->chan.ops = (struct ppp_channel_ops *)&pppoe_chan_ops;
+ 		po->chan.direct_xmit = true;
  
  		error = ppp_register_net_channel(dev_net(dev), &po->chan);
- 		if (error) {
-@@ -995,9 +997,80 @@ static int pppoe_fill_forward_path(struc
+@@ -997,9 +999,80 @@ static int pppoe_fill_forward_path(struc
  	return 0;
  }
  
@@ -510,7 +510,7 @@ Signed-off-by: Murat Sezgin <quic_msezgin@quicinc.com>
  };
  
  struct ppp_channel {
-@@ -47,6 +61,38 @@ struct ppp_channel {
+@@ -46,6 +60,38 @@ struct ppp_channel {
  };
  
  #ifdef __KERNEL__
@@ -549,7 +549,7 @@ Signed-off-by: Murat Sezgin <quic_msezgin@quicinc.com>
  /* Called by the channel when it can send some more data. */
  extern void ppp_output_wakeup(struct ppp_channel *);
  
-@@ -76,6 +122,12 @@ extern int ppp_unit_number(struct ppp_ch
+@@ -75,6 +121,12 @@ extern int ppp_unit_number(struct ppp_ch
  /* Get the device name associated with a channel, or NULL if none */
  extern char *ppp_dev_name(struct ppp_channel *);
  

@@ -119,7 +119,7 @@ Signed-off-by: Murat Sezgin <msezgin@codeaurora.org>
  	/* check for expected sequence number */
  	if (seq < opt->seq_recv + 1 || WRAPPED(opt->seq_recv, seq)) {
  		if ((payload[0] == PPP_ALLSTATIONS) && (payload[1] == PPP_UI) &&
-@@ -504,7 +557,7 @@ static int pptp_connect(struct socket *s
+@@ -505,7 +558,7 @@ static int pptp_connect(struct socket *s
  
  	opt->dst_addr = sp->sa_addr.pptp;
  	sk->sk_state |= PPPOX_CONNECTED;
@@ -128,7 +128,7 @@ Signed-off-by: Murat Sezgin <msezgin@codeaurora.org>
   end:
  	release_sock(sk);
  	return error;
-@@ -678,6 +731,81 @@ int pptp_session_find(struct pptp_opt *o
+@@ -679,6 +732,81 @@ int pptp_session_find(struct pptp_opt *o
  }
  EXPORT_SYMBOL(pptp_session_find);
  
