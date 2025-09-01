@@ -26,7 +26,7 @@ Signed-off-by: Amruth S <quic_amrus@quicinc.com>
 
 --- a/drivers/net/ppp/ppp_generic.c
 +++ b/drivers/net/ppp/ppp_generic.c
-@@ -48,6 +48,7 @@
+@@ -49,6 +49,7 @@
  #include <net/slhc_vj.h>
  #include <linux/atomic.h>
  #include <linux/refcount.h>
@@ -34,7 +34,7 @@ Signed-off-by: Amruth S <quic_amrus@quicinc.com>
  
  #include <linux/nsproxy.h>
  #include <net/net_namespace.h>
-@@ -3510,6 +3511,8 @@ ppp_connect_channel(struct channel *pch,
+@@ -3514,6 +3515,8 @@ ppp_connect_channel(struct channel *pch,
  	struct ppp_net *pn;
  	int ret = -ENXIO;
  	int hdrlen;
@@ -43,7 +43,7 @@ Signed-off-by: Amruth S <quic_amrus@quicinc.com>
  	int notify = 0;
  
  	pn = ppp_pernet(pch->chan_net);
-@@ -3547,6 +3550,30 @@ ppp_connect_channel(struct channel *pch,
+@@ -3551,6 +3554,30 @@ ppp_connect_channel(struct channel *pch,
  	++ppp->n_channels;
  	pch->ppp = ppp;
  	refcount_inc(&ppp->file.refcnt);
@@ -74,7 +74,7 @@ Signed-off-by: Amruth S <quic_amrus@quicinc.com>
  	notify = 1;
  
  	ppp_unlock(ppp);
-@@ -3797,6 +3824,18 @@ int ppp_channel_get_protocol(struct ppp_
+@@ -3802,6 +3829,18 @@ int ppp_channel_get_protocol(struct ppp_
  }
  EXPORT_SYMBOL(ppp_channel_get_protocol);
  
@@ -93,7 +93,7 @@ Signed-off-by: Amruth S <quic_amrus@quicinc.com>
  /* ppp_channel_hold()
   *	Call this to hold a channel.
   *
-@@ -3950,6 +3989,28 @@ void ppp_release_channels(struct ppp_cha
+@@ -3955,6 +3994,28 @@ void ppp_release_channels(struct ppp_cha
  }
  EXPORT_SYMBOL(ppp_release_channels);
  

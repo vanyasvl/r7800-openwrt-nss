@@ -23,7 +23,7 @@ Signed-off-by: Subhash Kumar Katnapally <quic_skatnapa@quicinc.com>
  #ifdef CONFIG_NET_INGRESS
  static DEFINE_STATIC_KEY_FALSE(ingress_needed_key);
  
-@@ -5574,11 +5577,13 @@ another_round:
+@@ -5586,11 +5589,13 @@ another_round:
  			goto out;
  	}
  
@@ -42,7 +42,7 @@ Signed-off-by: Subhash Kumar Katnapally <quic_skatnapa@quicinc.com>
  		}
  	}
  
-@@ -5634,6 +5639,24 @@ skip_classify:
+@@ -5646,6 +5651,24 @@ skip_classify:
  			goto out;
  	}
  

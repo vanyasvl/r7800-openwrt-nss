@@ -43,7 +43,7 @@ Signed-off-by: Ratheesh Kannoth <quic_rkannoth@quicinc.com>
  /**
   * netif_device_detach - mark device as removed
   * @dev: network device
-@@ -5571,12 +5567,6 @@ another_round:
+@@ -5583,12 +5579,6 @@ another_round:
  		}
  	}
  
@@ -56,7 +56,7 @@ Signed-off-by: Ratheesh Kannoth <quic_rkannoth@quicinc.com>
  	if (likely(!fast_tc_filter)) {
  		fast_recv = rcu_dereference(athrs_fast_nat_recv);
  		if (fast_recv) {
-@@ -5587,6 +5577,12 @@ another_round:
+@@ -5599,6 +5589,12 @@ another_round:
  		}
  	}
  
@@ -69,7 +69,7 @@ Signed-off-by: Ratheesh Kannoth <quic_rkannoth@quicinc.com>
  	if (skb_skip_tc_classify(skb))
  		goto skip_classify;
  
-@@ -8583,7 +8579,6 @@ void *netdev_lower_dev_get_private(struc
+@@ -8595,7 +8591,6 @@ void *netdev_lower_dev_get_private(struc
  }
  EXPORT_SYMBOL(netdev_lower_dev_get_private);
  

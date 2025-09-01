@@ -16,7 +16,7 @@ Signed-off-by: Murat Sezgin <msezgin@codeaurora.org>
 
 --- a/drivers/net/ppp/pptp.c
 +++ b/drivers/net/ppp/pptp.c
-@@ -604,9 +604,36 @@ static int pptp_ppp_ioctl(struct ppp_cha
+@@ -608,9 +608,36 @@ static int pptp_ppp_ioctl(struct ppp_cha
  	return err;
  }
  

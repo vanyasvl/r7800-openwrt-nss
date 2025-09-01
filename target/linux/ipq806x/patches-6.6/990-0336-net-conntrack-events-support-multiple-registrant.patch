@@ -290,7 +290,7 @@ Signed-off-by: Murat Sezgin <msezgin@codeaurora.org>
  
  	if (events & (1 << IPCT_DESTROY)) {
  		type = IPCTNL_MSG_CT_DELETE;
-@@ -3089,6 +3100,7 @@ nla_put_failure:
+@@ -3091,6 +3102,7 @@ nla_put_failure:
  }
  
  #ifdef CONFIG_NF_CONNTRACK_EVENTS
@@ -298,7 +298,7 @@ Signed-off-by: Murat Sezgin <msezgin@codeaurora.org>
  static int
  ctnetlink_expect_event(unsigned int events, const struct nf_exp_event *item)
  {
-@@ -3138,6 +3150,7 @@ errout:
+@@ -3140,6 +3152,7 @@ errout:
  	return 0;
  }
  #endif
@@ -306,7 +306,7 @@ Signed-off-by: Murat Sezgin <msezgin@codeaurora.org>
  static int ctnetlink_exp_done(struct netlink_callback *cb)
  {
  	if (cb->args[1])
-@@ -3748,11 +3761,17 @@ static int ctnetlink_stat_exp_cpu(struct
+@@ -3750,11 +3763,17 @@ static int ctnetlink_stat_exp_cpu(struct
  }
  
  #ifdef CONFIG_NF_CONNTRACK_EVENTS
@@ -324,7 +324,7 @@ Signed-off-by: Murat Sezgin <msezgin@codeaurora.org>
  
  static const struct nfnl_callback ctnl_cb[IPCTNL_MSG_MAX] = {
  	[IPCTNL_MSG_CT_NEW]	= {
-@@ -3851,8 +3870,12 @@ static int __net_init ctnetlink_net_init
+@@ -3853,8 +3872,12 @@ static int __net_init ctnetlink_net_init
  static void ctnetlink_net_pre_exit(struct net *net)
  {
  #ifdef CONFIG_NF_CONNTRACK_EVENTS

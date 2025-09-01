@@ -216,7 +216,7 @@ Signed-off-by: Tushar Ganatra <quic_tganatra@quicinc.com>
  #endif
 --- a/arch/arm64/include/asm/assembler.h
 +++ b/arch/arm64/include/asm/assembler.h
-@@ -428,6 +428,45 @@ alternative_endif
+@@ -433,6 +433,45 @@ alternative_endif
  
  /*
   * Macro to perform a data cache maintenance for the interval

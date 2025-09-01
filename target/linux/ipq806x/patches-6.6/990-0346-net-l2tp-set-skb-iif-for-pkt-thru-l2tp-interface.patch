@@ -13,7 +13,7 @@ Signed-off-by: ratheesh kannoth <rkannoth@codeaurora.org>
 
 --- a/drivers/net/ppp/ppp_generic.c
 +++ b/drivers/net/ppp/ppp_generic.c
-@@ -2996,6 +2996,20 @@ char *ppp_dev_name(struct ppp_channel *c
+@@ -3000,6 +3000,20 @@ char *ppp_dev_name(struct ppp_channel *c
  	return name;
  }
  
@@ -34,7 +34,7 @@ Signed-off-by: ratheesh kannoth <rkannoth@codeaurora.org>
  
  /*
   * Disconnect a channel from the generic layer.
-@@ -3868,6 +3882,7 @@ EXPORT_SYMBOL(ppp_unregister_channel);
+@@ -3873,6 +3887,7 @@ EXPORT_SYMBOL(ppp_unregister_channel);
  EXPORT_SYMBOL(ppp_channel_index);
  EXPORT_SYMBOL(ppp_unit_number);
  EXPORT_SYMBOL(ppp_dev_name);

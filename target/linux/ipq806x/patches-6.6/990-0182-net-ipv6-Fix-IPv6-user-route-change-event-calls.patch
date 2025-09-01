@@ -26,7 +26,7 @@ Signed-off-by: Murat Sezgin <msezgin@codeaurora.org>
  	return err;
  }
  
-@@ -5561,11 +5565,17 @@ static int inet6_rtm_delroute(struct sk_
+@@ -5562,11 +5566,17 @@ static int inet6_rtm_delroute(struct sk_
  	}
  
  	if (cfg.fc_mp)
@@ -46,7 +46,7 @@ Signed-off-by: Murat Sezgin <msezgin@codeaurora.org>
  }
  
  static int inet6_rtm_newroute(struct sk_buff *skb, struct nlmsghdr *nlh,
-@@ -5582,9 +5592,15 @@ static int inet6_rtm_newroute(struct sk_
+@@ -5583,9 +5593,15 @@ static int inet6_rtm_newroute(struct sk_
  		cfg.fc_metric = IP6_RT_PRIO_USER;
  
  	if (cfg.fc_mp)
