@@ -30,9 +30,9 @@ Signed-off-by: Sowmiya Sree Elavalagan <ssreeela@codeaurora.org>
 
 --- a/local-symbols
 +++ b/local-symbols
-@@ -32,6 +32,7 @@ LIB80211_CRYPT_CCMP=
- LIB80211_CRYPT_TKIP=
- LIB80211_DEBUG=
+@@ -26,6 +26,7 @@ CFG80211_CRDA_SUPPORT=
+ CFG80211_WEXT=
+ CFG80211_KUNIT_TEST=
  MAC80211=
 +MAC80211_NSS_SUPPORT=
  MAC80211_HAS_RC=
@@ -67,7 +67,7 @@ Signed-off-by: Sowmiya Sree Elavalagan <ssreeela@codeaurora.org>
  extern const struct cfg80211_ops mac80211_config_ops;
  
  struct ieee80211_local;
-@@ -1185,6 +1189,10 @@ struct ieee80211_sub_if_data {
+@@ -1202,6 +1206,10 @@ struct ieee80211_sub_if_data {
  	} debugfs;
  #endif
  
@@ -93,21 +93,21 @@ Signed-off-by: Sowmiya Sree Elavalagan <ssreeela@codeaurora.org>
  /**
   * DOC: Interface list locking
   *
-@@ -776,6 +782,13 @@ static int ieee80211_stop(struct net_dev
+@@ -788,6 +794,13 @@ static int ieee80211_stop(struct net_dev
  		ieee80211_stop_mbssid(sdata);
  	}
- 
+
 +#ifdef CPTCFG_MAC80211_NSS_SUPPORT
-+	if (sdata->nssctx) {
-+		nss_virt_if_destroy_sync(sdata->nssctx);
-+		sdata_info(sdata, "Destroyed NSS virtual interface\n");
-+	}
++       if (sdata->nssctx) {
++               nss_virt_if_destroy_sync(sdata->nssctx);
++               sdata_info(sdata, "Destroyed NSS virtual interface\n");
++       }
 +#endif
 +
  	wiphy_lock(sdata->local->hw.wiphy);
  	wiphy_work_cancel(sdata->local->hw.wiphy, &sdata->activate_links_work);
- 
-@@ -1226,6 +1239,34 @@ void ieee80211_del_virtual_monitor(struc
+
+@@ -1263,6 +1276,34 @@ void ieee80211_del_virtual_monitor(struc
  	kfree(sdata);
  }
  
@@ -142,7 +142,7 @@ Signed-off-by: Sowmiya Sree Elavalagan <ssreeela@codeaurora.org>
  /*
   * NOTE: Be very careful when changing this function, it must NOT return
   * an error on interface type changes that have been pre-checked, so most
-@@ -1456,6 +1497,19 @@ int ieee80211_do_open(struct wireless_de
+@@ -1497,6 +1538,19 @@ int ieee80211_do_open(struct wireless_de
  
  	ieee80211_recalc_ps(local);
  
@@ -236,7 +236,7 @@ Signed-off-by: Sowmiya Sree Elavalagan <ssreeela@codeaurora.org>
  
 --- a/net/mac80211/tx.c
 +++ b/net/mac80211/tx.c
-@@ -4495,6 +4495,35 @@ static void ieee80211_mlo_multicast_tx(s
+@@ -4488,6 +4488,35 @@ static void ieee80211_mlo_multicast_tx(s
  	kfree_skb(skb);
  }
  
@@ -272,7 +272,7 @@ Signed-off-by: Sowmiya Sree Elavalagan <ssreeela@codeaurora.org>
  /**
   * ieee80211_subif_start_xmit - netif start_xmit function for 802.3 vifs
   * @skb: packet to be sent
-@@ -4510,6 +4539,10 @@ netdev_tx_t ieee80211_subif_start_xmit(s
+@@ -4503,6 +4532,10 @@ netdev_tx_t ieee80211_subif_start_xmit(s
  	struct ieee80211_sub_if_data *sdata = IEEE80211_DEV_TO_SUB_IF(dev);
  	const struct ethhdr *eth = (void *)skb->data;
  
@@ -283,7 +283,7 @@ Signed-off-by: Sowmiya Sree Elavalagan <ssreeela@codeaurora.org>
  	if (likely(!is_multicast_ether_addr(eth->h_dest)))
  		goto normal;
  
-@@ -4696,6 +4729,10 @@ netdev_tx_t ieee80211_subif_start_xmit_8
+@@ -4690,6 +4723,10 @@ netdev_tx_t ieee80211_subif_start_xmit_8
  	struct ieee80211_key *key;
  	struct sta_info *sta;
  
